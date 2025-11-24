@@ -1,71 +1,80 @@
-Price Scraper CLI (for Sri Lanka)
+🌐 Price Scraper CLI (Sri Lanka Focus)
 
-A modular, command-line tool designed to scrape product data from various e-commerce websites in supported countries (currently focused on Sri Lanka). The architecture is designed for easy expansion by adding new scraper modules.
+A modular, command-line utility designed for fast, resilient scraping of product data from e-commerce websites in supported regions, currently focused on Sri Lanka.
+
+✨ Features & Resilience
+
+Modular Architecture: Easily extensible by adding new site-specific scraper modules.
+
+Initial Coverage: Supports scraping all major categories from BuyAbans.com.
+
+Resilience: Implements automatic request retries (handling 504 Gateway Timeouts) and polite scraping delays.
+
+Data Integrity: Robust brand extraction logic ensures accurate product attribution, even if the source JSON is messy.
+
+User Interface: Interactive CLI guides users through dependency checks and site selection.
+
+Output: Exports clean, structured data directly to .xlsx (Excel) files.
 
 🚀 Getting Started
 
-Follow these steps to set up and run the scraper on your local machine.
+1. Prerequisites
 
-Prerequisites
+You need Python 3.8+ installed on your system.
 
-You need Python 3.x installed on your system.
+2. Installation
 
-Installation
+First, clone the repository to your local machine:
 
-Clone the repository:
-
-git clone [https://github.com/YourUsername/price-scraper-cli.git](https://github.com/YourUsername/price-scraper-cli.git)
-cd price-scraper-cli
+git clone [https://github.com/Optane002/web_scraper.git](https://github.com/Optane002/web_scraper.git)
+cd web_scraper
 
 
-Install dependencies:
-The required Python packages are listed in requirements.txt.
+Next, install all required Python packages (requests, pandas, openpyxl, urllib3):
 
 pip install -r requirements.txt
 
 
-Running the Scraper
+3. Running the Scraper
 
-Execute the main script from your terminal:
+Execute the main script from the root directory of the project:
 
 python web_scraper.py
 
 
-The application will guide you through the following steps:
-
-Dependency Check: It verifies all necessary packages are installed.
-
-Country Selection: (Currently defaults to Sri Lanka if only one option exists).
-
-Website Selection: You will choose which supported website to scrape (e.g., BuyAbans.com).
-
-Scraping: The scraper runs, fetches data across multiple pages/categories, and handles server timeouts with retry logic.
-
-Output: The final data is saved to a clean Excel file (e.g., mywebsite_All_Products.xlsx).
+The application will run its checks and then present an interactive menu for you to select the country and the target website.
 
 ⚙️ Project Structure & Extensibility
 
-The tool uses a modular design to make adding new sites simple:
+The application is split into clear components, allowing simple contribution:
 
-price-scraper-cli/
+web_scraper/
 ├── config/
-│   └── sites.py        # Maps country/site names to scraper functions and configs
+│   └── sites.py        # Maps countries/sites to their scraper functions and configuration settings.
 ├── scrapers/
-│   ├── __init__.py     # Makes 'scrapers' a Python package
-│   └── buyabans.py     # **Site-specific logic for BuyAbans.com**
-├── web_scraper.py      # Main CLI execution and dependency check
-├── requirements.txt    # Project dependencies
+│   ├── __init__.py     # Package initializer.
+│   └── mysite.py     # **Contains site-specific scraping logic and helpers.**
+├── web_scraper.py      # Main CLI entry point, handling headers, checks, and user flow.
+├── requirements.txt    # Lists all mandatory dependencies.
 └── README.md
 
 
-Adding a New Website (e.g., mywebsite.lk)
+Contributing: Adding a New Website
 
-Create a new file in the scrapers/ directory: scrapers/mywebsite.py.
+The core principle of this project is easy extensibility. To add support for a new website (e.g., mysite.lk):
 
-Implement a single main function inside mywebsite.py that takes a config dictionary (just like scrape_exsitingfile does).
+Create a Scraper Module:
 
-Import the new scraper function into scrapers/__init__.py.
+Create a new file in the scrapers/ directory (e.g., mysite.py).
 
-Add a new entry to the SUPPORTED_SITES dictionary in config/sites.py, linking it to your new scraper function and providing the necessary configuration (base URL, specific categories, etc.).
+Implement the main scraper function (it must accept a config dictionary and return a list of product dictionaries).
 
-No changes are needed in web_scraper.py! The main application automatically detects the new option.
+Integrate:
+
+Import your new scraper function into scrapers/__init__.py.
+
+Add a new entry to the SUPPORTED_SITES dictionary in config/sites.py, providing the necessary configuration (Base URL, specific IDs, file names, etc.).
+
+📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
