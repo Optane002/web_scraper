@@ -10,7 +10,7 @@ Details
 
 Version
 
-(e.g., v1.0.0)
+
 
 License
 
