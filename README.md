@@ -1,110 +1,78 @@
-🌐 Price Scraper CLI (Sri Lanka Focus)
+$ @"
+# 🌐 Price Scraper CLI (Sri Lanka Focus)
 
-A modular, command-line utility designed for fast, resilient scraping of product data from e-commerce websites in supported regions, currently focused on Sri Lanka.
+A modular CLI for fast, resilient scraping of product data from Sri Lankan e-commerce stores. Built for extensibility and polite scraping.
 
-📊 Status & Metadata
+## Status & Metadata
 
-Status
+| Field    | Details           |
+|--------- |------------------|
+| Version  | _Add current tag_ |
+| License  | MIT               |
+| Language | Python 3.8+       |
 
-Details
+## Table of Contents
 
-Version
+- [Features & Resilience](#features--resilience)
+- [Getting Started](#getting-started)
+- [Project Structure & Extensibility](#project-structure--extensibility)
+- [License](#license)
 
+## Features & Resilience
 
+- Modular architecture keeps core logic separate from site-specific scrapers.
+- Initial coverage targets BuyAbans.com across major product categories.
+- Automatic retries handle transient 504 errors with polite delays to avoid IP blocks.
+- Brand extraction guards against messy or incomplete upstream JSON.
+- Interactive CLI guides dependency checks, region selection, and scraper choice.
+- Output exports to clean `.xlsx` files for analysis and sharing.
 
-License
+## Getting Started
 
+### 1. Prerequisites
 
+Install Python **3.8+**.
 
-Language
+### 2. Installation
 
-Python 3.8+
+Clone the repo and install dependencies:
 
-🧭 Table of Contents
-
-✨ Features & Resilience
-
-🚀 Getting Started
-
-⚙️ Project Structure & Extensibility
-
-📝 License
-
-✨ Features & Resilience
-
-The tool is built for stability and easy contribution:
-
-Modular Architecture: The core logic is cleanly separated from site-specific code, making it simple to extend the tool.
-
-Initial Coverage: Supports scraping all major product categories from BuyAbans.com.
-
-Resilience: Implements automatic request retries (handling 504 Gateway Timeouts) and polite scraping delays to prevent IP blocking.
-
-Data Integrity: Robust brand extraction logic ensures accurate product attribution, even if the source JSON is messy.
-
-User Interface: Interactive CLI guides users through dependency checks and site selection.
-
-Output: Exports clean, structured data directly to .xlsx (Excel) files.
-
-🚀 Getting Started
-
-1. Prerequisites
-
-You must have Python 3.8+ installed on your system.
-
-2. Installation
-
-Clone the repository and move into the project directory:
-
-git clone [https://github.com/YourUsername/price-scraper-cli.git](https://github.com/YourUsername/price-scraper-cli.git)
+```
+git clone https://github.com/YourUsername/price-scraper-cli.git
 cd price-scraper-cli
+pip install -r requirements.txt  # requests, pandas, openpyxl, urllib3, etc.
+```
 
+### 3. Run the Scraper
 
-Install all required Python packages (requests, pandas, openpyxl, urllib3):
-
-pip install -r requirements.txt
-
-
-3. Running the Scraper
-
-Execute the main script from the root directory of the project:
-
+```
 python web_scraper.py
+```
 
+The CLI presents a shell-style header, performs dependency checks, then prompts for region and target site.
 
-The application will display a shell-style header, check dependencies, and then prompt you to select the country and target website.
+## Project Structure & Extensibility
 
-⚙️ Project Structure & Extensibility
-
-The application is split into clear components, allowing simple contribution:
-
+```
 price-scraper-cli/
 ├── config/
-│   └── sites.py        # Maps countries/sites to their scraper functions and configuration settings.
+│   └── sites.py        # Maps countries/sites to their scrapers and config.
 ├── scrapers/
 │   ├── __init__.py     # Package initializer.
-│   └── buyabans.py     # **Contains site-specific scraping logic and helpers.**
-├── web_scraper.py      # Main CLI entry point, handling headers, checks, and user flow.
-├── requirements.txt    # Lists all mandatory dependencies.
+│   └── buyabans.py     # Site-specific scraping logic & helpers.
+├── web_scraper.py      # Main CLI entry point and flow controller.
+├── requirements.txt    # Python dependencies.
 └── README.md
+```
 
+### Adding a New Website
 
-Contributing: Adding a New Website
+1. **Create a scraper**: add `scrapers/<site>.py` with a function that accepts a config dict and returns a list of product dicts.
+2. **Wire it up**:
+   - Import your scraper inside `scrapers/__init__.py`.
+   - Extend `SUPPORTED_SITES` in `config/sites.py` with the new entry (base URL, category IDs, export filename, etc.).
 
-The core principle of this project is easy extensibility. To add support for a new website (e.g., nanotek.lk):
+## License
 
-Create a Scraper Module (scrapers/nanotek.py):
-
-Create a new file in the scrapers/ directory (e.g., nanotek.py).
-
-Implement the main scraping function (it must accept a config dictionary and return a list of product dictionaries).
-
-Integrate Configuration:
-
-Import your new scraper function into scrapers/__init__.py.
-
-Add a new entry to the SUPPORTED_SITES dictionary in config/sites.py, providing the necessary configuration (Base URL, specific IDs, file names, etc.).
-
-📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. See `LICENSE` for details.
+"@ | Set-Content -Encoding UTF8 "Solutions\Web Scraper\README.md"
