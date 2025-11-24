@@ -1,4 +1,4 @@
-$ @"
+@"
 # 🌐 Price Scraper CLI (Sri Lanka Focus)
 
 A modular CLI for fast, resilient scraping of product data from Sri Lankan e-commerce stores. Built for extensibility and polite scraping.
@@ -7,7 +7,7 @@ A modular CLI for fast, resilient scraping of product data from Sri Lankan e-com
 
 | Field    | Details           |
 |--------- |------------------|
-| Version  | _Add current tag_ |
+| Version  | v1.0.0 |
 | License  | MIT               |
 | Language | Python 3.8+       |
 
@@ -38,8 +38,8 @@ Install Python **3.8+**.
 Clone the repo and install dependencies:
 
 ```
-git clone https://github.com/YourUsername/price-scraper-cli.git
-cd price-scraper-cli
+git clone https://github.com/Optane002/web_scraper.git
+cd web_scraper
 pip install -r requirements.txt  # requests, pandas, openpyxl, urllib3, etc.
 ```
 
@@ -59,7 +59,7 @@ price-scraper-cli/
 │   └── sites.py        # Maps countries/sites to their scrapers and config.
 ├── scrapers/
 │   ├── __init__.py     # Package initializer.
-│   └── buyabans.py     # Site-specific scraping logic & helpers.
+│   └── mysite.py       # Site-specific scraping logic & helpers.
 ├── web_scraper.py      # Main CLI entry point and flow controller.
 ├── requirements.txt    # Python dependencies.
 └── README.md
