@@ -1,7 +1,7 @@
 
-# 🌐 Price Scraper CLI (Sri Lanka Only)
+# 🌐 Price Scraper CLI
 
-A modular CLI for fast, resilient scraping of product data from Sri Lankan e-commerce stores. Built for extensibility and polite scraping.
+A modular CLI for fast, resilient scraping of product data from e-commerce stores. Built for extensibility and polite scraping.
 
 ## Status & Metadata
 
