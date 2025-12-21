@@ -20,7 +20,7 @@ A modular CLI for fast, resilient scraping of product data from e-commerce store
 
 ## Features & Resilience
 
-- **Multi-Region Support**: Scrapes sites from **Sri Lanka** (Abans, Unity, Nanotek, Singer, Laptop.lk) and **Japan** (TokyoPC).
+- **Multi-Region Support**: Scrapes sites **SL** and **JP**.
 - **Modular Architecture**: Keeps core logic separate from site-specific scrapers.
 - **Auto-Update**: Automatically checks for updates against the GitHub repository on startup.
 - **Resilient Scraping**: Automatic retries handle transient errors with polite delays.
