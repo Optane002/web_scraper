@@ -1,4 +1,3 @@
-
 # 🌐 Price Scraper CLI
 
 A modular CLI for fast, resilient scraping of product data from e-commerce stores. Built for extensibility and polite scraping.
@@ -7,7 +6,7 @@ A modular CLI for fast, resilient scraping of product data from e-commerce store
 
 | Field    | Details           |
 |--------- |------------------|
-| Version  | v1.0.0 |
+| Version  | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Optane002/Web_Scraper?label=Version&color=blue)](https://github.com/Optane002/Web_Scraper/releases) |
 | License  | MIT               |
 | Language | Python 3.8+       |
 
@@ -20,12 +19,13 @@ A modular CLI for fast, resilient scraping of product data from e-commerce store
 
 ## Features & Resilience
 
-- Modular architecture keeps core logic separate from site-specific scrapers.
-- Initial coverage targets BuyAbans.com across major product categories.
-- Automatic retries handle transient 504 errors with polite delays to avoid IP blocks.
-- Brand extraction guards against messy or incomplete upstream JSON.
-- Interactive CLI guides dependency checks, region selection, and scraper choice.
-- Output exports to clean `.xlsx` files for analysis and sharing.
+- **Multi-Region Support**: Scrapes sites from **Sri Lanka** (Abans, Unity, Nanotek, Singer, Laptop.lk) and **Japan** (TokyoPC).
+- **Modular Architecture**: Keeps core logic separate from site-specific scrapers.
+- **Auto-Update**: Automatically checks for updates against the GitHub repository on startup.
+- **Resilient Scraping**: Automatic retries handle transient errors with polite delays.
+- **Brand Extraction**: Guards against messy or incomplete upstream data.
+- **Interactive CLI**: Guides dependency checks, region selection, and scraper choice.
+- **Excel Export**: Output exports to clean `.xlsx` files for analysis.
 
 ## Getting Started
 
@@ -37,10 +37,10 @@ Install Python **3.8+**.
 
 Clone the repo and install dependencies:
 
-```
-git clone https://github.com/Optane002/web_scraper.git
-cd web_scraper
-pip install -r requirements.txt  # requests, pandas, openpyxl, urllib3, etc.
+```bash
+git clone https://github.com/Optane002/Web_Scraper.git
+cd Web_Scraper
+pip install -r requirements.txt # requests, pandas, openpyxl, urllib3, etc.
 ```
 
 ### 3. Run the Scraper
@@ -59,17 +59,19 @@ price-scraper-cli/
 │   └── sites.py        # Maps countries/sites to their scrapers and config.
 ├── scrapers/
 │   ├── __init__.py     # Package initializer.
-│   └── mysite.py       # Site-specific scraping logic & helpers.
+│   ├── country1/       # Country1 scrapers
+│   └── country2/          # Country2 scrapers
 ├── web_scraper.py      # Main CLI entry point and flow controller.
 ├── requirements.txt    # Python dependencies.
+├── version.txt         # Current version tracking.
 └── README.md
 ```
 
 ### Adding a New Website
 
-1. **Create a scraper**: add `scrapers/<site>.py` with a function that accepts a config dict and returns a list of product dicts.
+1. **Create a scraper**: add `scrapers/<country>/<site>.py` with a function that accepts a config dict and returns a list of product dicts.
 2. **Wire it up**:
-   - Import your scraper inside `scrapers/__init__.py`.
+   - Import your scraper inside `scrapers/<country>/__init__.py`.
    - Extend `SUPPORTED_SITES` in `config/sites.py` with the new entry (base URL, category IDs, export filename, etc.).
 
 ## License
